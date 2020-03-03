@@ -39,7 +39,6 @@ public class CRUDController {
 	public List fetchList() {
 		List list=new ArrayList();
 		try {
-			
 			return service.findAll();
 		}catch(Exception e) {
 			e.printStackTrace();
