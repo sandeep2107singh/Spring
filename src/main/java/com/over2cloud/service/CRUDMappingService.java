@@ -20,20 +20,21 @@ public class CRUDMappingService {
 	@Autowired
 	CRUDService service;
 
+	
+
 	public List findAll() {
-		CRUDResponse response=new CRUDResponse();
-		List list=new ArrayList();
+		CRUDResponse response = new CRUDResponse();
+		List list = new ArrayList();
 		try {
-			list=service.findAll();
+			list = service.findAll();
 			response.setResponse(true);
 			response.setMessage("List");
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return list;
 	}
-	
-	
+
 	public CRUDResponse create(JSONObject requestJson) {
 		CRUDResponse response = new CRUDResponse();
 		Map<String, Object> result = new HashMap<String, Object>();
@@ -131,40 +132,41 @@ public class CRUDMappingService {
 	}
 
 	public CRUDResponse delete(JSONObject requestJson) {
-		CRUDResponse response=new CRUDResponse();
-		Map<String,Object> result=new HashMap<String, Object>();
+		CRUDResponse response = new CRUDResponse();
+		Map<String, Object> result = new HashMap<String, Object>();
 		try {
-			if(validateDelete(requestJson)) {
-				String mobile=requestJson.optString("mobile");
-				if(mobile.length()<=12) {
-					int deletedata=service.deleteByMobile(mobile);
-					if(deletedata!=0) {
-					logger.info("data delete successfully");
-					response.setResponse(true);
-					response.setMessage("data delete successfully");
-					}else {
+			if (validateDelete(requestJson)) {
+				String mobile = requestJson.optString("mobile");
+				if (mobile.length() <= 12) {
+					int deletedata = service.deleteByMobile(mobile);
+					if (deletedata != 0) {
+						logger.info("data delete successfully");
+						response.setResponse(true);
+						response.setMessage("data delete successfully");
+					} else {
 						logger.info("this mobile number not exit's in table");
 						response.setResponse(false);
 						response.setMessage("this mobile number not exit's in table");
 						response.setResult(result);
 					}
-				}else {
+				} else {
 					logger.info("mobile number incorrect");
 					response.setResponse(false);
 					response.setMessage("mobile number incorrect");
 					response.setResult(result);
 				}
-			}else {
+			} else {
 				logger.info("request body incorrect");
 				response.setMessage("request body incorrect");
 				response.setResponse(false);
 				response.setResult(result);
 			}
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return response;
 	}
+
 	public boolean validate(JSONObject requestJson) {
 		if (requestJson.has("name") && requestJson.has("lastName") && requestJson.has("fatherName")
 				&& requestJson.has("cource") && requestJson.has("rollno") && requestJson.has("CollegeName")
@@ -174,11 +176,14 @@ public class CRUDMappingService {
 
 		return false;
 	}
-	
+
 	public boolean validateDelete(JSONObject requestJson) {
-		if(requestJson.has("mobile")) {
+		if (requestJson.has("mobile")) {
 			return true;
 		}
 		return false;
 	}
+
+	
+
 }

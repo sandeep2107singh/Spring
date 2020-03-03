@@ -22,6 +22,7 @@ import com.over2cloud.service.CRUDMappingService;
 import com.over2cloud.utils.Validation;
 
 
+
 @RestController
 @ComponentScan({ "com.over2cloud" })
 @RequestMapping(value = "/crud")
@@ -31,6 +32,8 @@ public class CRUDController {
 	CRUDMappingService service;
 
 	final Logger logger = Logger.getLogger(CRUDController.class);
+	
+	
 	
 	@GetMapping(value="/fetch")
 	public List fetchList() {

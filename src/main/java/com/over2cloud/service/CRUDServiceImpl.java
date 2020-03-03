@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.over2cloud.repository.CRUDRepository;
 import com.over2cloud.request.CRUDRequest;
+import com.over2cloud.request.LoginDetails;
 
 @Service
 @Transactional
@@ -36,4 +37,5 @@ public class CRUDServiceImpl implements CRUDService{
 	{
 		return repository.findAll();
 	}
+
 }

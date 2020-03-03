@@ -9,4 +9,5 @@ public interface CRUDRepository extends JpaRepository<CRUDRequest, Long>{
 	public CRUDRequest findByMobile(String mobile);
 	public int deleteByMobile(String mobile);
 	
+	
 }
