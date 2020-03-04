@@ -27,8 +27,13 @@ public class CRUDMappingService {
 		List list = new ArrayList();
 		try {
 			list = service.findAll();
+			if(list!=null) {
 			response.setResponse(true);
-			response.setMessage("List");
+			response.setMessage("fetch data successfully");
+			}else {
+				response.setResponse(false);
+				response.setMessage("No data found");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
