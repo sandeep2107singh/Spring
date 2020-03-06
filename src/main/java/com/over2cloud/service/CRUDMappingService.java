@@ -27,13 +27,8 @@ public class CRUDMappingService {
 		List list = new ArrayList();
 		try {
 			list = service.findAll();
-			if(list!=null) {
-			response.setResponse(true);
-			response.setMessage("fetch data successfully");
-			}else {
-				response.setResponse(false);
-				response.setMessage("No data found");
-			}
+			response.setSuccess(true);
+			response.setMessage("List");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -51,7 +46,7 @@ public class CRUDMappingService {
 					CRUDRequest request = service.findByMobile(mobile);
 
 					if (request != null) {
-						response.setResponse(false);
+						response.setSuccess(false);
 						response.setMessage("this mobile number already insert");
 					} else {
 						CRUDRequest crud = new CRUDRequest();
@@ -66,19 +61,19 @@ public class CRUDMappingService {
 
 						logger.info("done");
 						response.setMessage("data insert successfully");
-						response.setResponse(true);
+						response.setSuccess(true);
 						response.setResult(result);
 					}
 				} else {
 					logger.info("mobile number incorrect");
-					response.setResponse(false);
+					response.setSuccess(false);
 					response.setMessage("mobile number incorrect");
 					response.setResult(result);
 				}
 			} else {
 				logger.info("request body incorrect");
 				response.setMessage("request body incorrect");
-				response.setResponse(false);
+				response.setSuccess(false);
 				response.setResult(result);
 			}
 
@@ -109,25 +104,25 @@ public class CRUDMappingService {
 
 						logger.info("data update successfully");
 						response.setMessage("data update successfully");
-						response.setResponse(true);
+						response.setSuccess(true);
 						result.put("mobile", mobile);
 						response.setResult(result);
 					} else {
 						logger.info("this mobile number not exit's in table");
-						response.setResponse(false);
+						response.setSuccess(false);
 						response.setMessage("this mobile number not exit's in table");
 						response.setResult(result);
 					}
 				} else {
 					logger.info("mobile number incorrect");
-					response.setResponse(false);
+					response.setSuccess(false);
 					response.setMessage("mobile number incorrect");
 					response.setResult(result);
 				}
 			} else {
 				logger.info("request body incorrect");
 				response.setMessage("request body incorrect");
-				response.setResponse(false);
+				response.setSuccess(false);
 				response.setResult(result);
 			}
 		} catch (Exception e) {
@@ -146,24 +141,24 @@ public class CRUDMappingService {
 					int deletedata = service.deleteByMobile(mobile);
 					if (deletedata != 0) {
 						logger.info("data delete successfully");
-						response.setResponse(true);
+						response.setSuccess(true);
 						response.setMessage("data delete successfully");
 					} else {
 						logger.info("this mobile number not exit's in table");
-						response.setResponse(false);
+						response.setSuccess(false);
 						response.setMessage("this mobile number not exit's in table");
 						response.setResult(result);
 					}
 				} else {
 					logger.info("mobile number incorrect");
-					response.setResponse(false);
+					response.setSuccess(false);
 					response.setMessage("mobile number incorrect");
 					response.setResult(result);
 				}
 			} else {
 				logger.info("request body incorrect");
 				response.setMessage("request body incorrect");
-				response.setResponse(false);
+				response.setSuccess(false);
 				response.setResult(result);
 			}
 		} catch (Exception e) {

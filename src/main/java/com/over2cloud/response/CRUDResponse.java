@@ -35,10 +35,13 @@ public class CRUDResponse {
 	public void setTimestamp(Long timestamp) {
 		this.timestamp = timestamp;
 	}
-	public void setResponse(boolean b) {
-		// TODO Auto-generated method stub
-		
+	public boolean isSuccess() {
+		return success;
 	}
+	public void setSuccess(boolean success) {
+		this.success = success;
+	}
+
 	
 	
 

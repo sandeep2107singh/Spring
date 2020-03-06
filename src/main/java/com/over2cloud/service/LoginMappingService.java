@@ -28,18 +28,21 @@ public class LoginMappingService {
 				LoginDetails verifyUser = service.findByUsernameAndPasswordAndStatus(username, password);
 				if (verifyUser != null) {
                   logger.info("valid username and password");
-                  response.setResponse(true);
+                  
+                  response.setSuccess(true);
                   response.setMessage("login successfully");
                   result.put("username",username);
+                  result.put("password",password);
+                  response.setResult(result);
 				}else {
 					  logger.info("invalid username and password");
-	                  response.setResponse(false);
+	                  response.setSuccess(false);
 	                  response.setMessage("invalid username and password");
 				}
 				
 			}else {
 				logger.info("request body incorrect");
-                response.setResponse(false);
+				 response.setSuccess(false);
                 response.setMessage("request body incorrect");
 			}
 
@@ -58,7 +61,7 @@ public class LoginMappingService {
 				if (mobile.length() <= 12) {
 					LoginDetails checkDupicate = service.findByMobile(mobile);
 					if (checkDupicate != null) {
-						response.setResponse(false);
+						 response.setSuccess(false);
 						response.setMessage("this mobile number already available");
 						response.setResult(result);
 					} else {
@@ -71,7 +74,7 @@ public class LoginMappingService {
 						details = service.save(details);
 
 						logger.info("data add successfully===" + mobile);
-						response.setResponse(true);
+						response.setSuccess(true);
 						response.setMessage("data add successfully");
 						result.put("username", requestJson.optString("username"));
 						result.put("password", requestJson.optString("password"));
@@ -79,13 +82,13 @@ public class LoginMappingService {
 					}
 				} else {
 					logger.info("mobile number incorrect");
-					response.setResponse(false);
+					 response.setSuccess(false);
 					response.setMessage("mobile number incorrect");
 					response.setResult(result);
 				}
 			} else {
 				logger.info("request body incorrect");
-				response.setResponse(false);
+				 response.setSuccess(false);
 				response.setMessage("request body incorrect");
 				response.setResult(result);
 			}
